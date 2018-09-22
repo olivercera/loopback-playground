@@ -1,5 +1,5 @@
 module.exports = function (app) {
-  app.dataSources.mysqlDs.automigrate('Post', function (err) {
+  app.dataSources.db.automigrate('Post', function (err) {
     if (err) throw err;
 
     app.models.Post.create([{
