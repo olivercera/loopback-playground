@@ -38,5 +38,9 @@
   "Post": {
     "dataSource": "db",
     "public": true
+  },
+  "onlyAdmin": {
+    "dataSource": "db",
+    "public": true
   }
 }
