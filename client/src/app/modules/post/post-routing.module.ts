@@ -7,7 +7,7 @@ const routes: Routes = [
         path: '',
         // canActivate: [AuthguardGuard],
         component: PostListComponent
-    },
+    }
     /*
     {
         path: 'create',

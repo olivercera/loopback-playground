@@ -17,7 +17,7 @@ export const APPROUTES: Routes = [
                 loadChildren: () => PostModule
             }
         ]
-    },
+    }
 ];
 
 export const Routing: ModuleWithProviders = RouterModule.forRoot(APPROUTES, { useHash: true });

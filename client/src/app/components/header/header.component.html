@@ -1,36 +1,30 @@
-<div id="layout-topbar">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<a class="navbar-brand" [routerLink]="['']" >Wayne County Court App</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+    aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-  <div class="application-tagline">
-    <a href="" [routerLink]="['/']">Wayne County Court App</a>
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" [routerLink]="['']">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['./post']">Link</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" [routerLink]="['./post']" id="dropdown01" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">Dropdown</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown01">
+          <a [routerLink]="['./post']">Posts</a>
+          <a [routerLink]="['./user']">Users</a>
+        </div>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
   </div>
-
-
-  <ul class="topbar-menu">
-    <li>
-      <a href="#" [routerLink]="['/']">HOME</a>
-    </li>
-    <li *ngIf="!isLoggedIn">
-      <a [routerLink]="['./login']">LOGIN</a>
-    </li>
-
-    <li class="topbar-menu-themes" *ngIf="isLoggedIn">
-      <a href="#">SYSTEM</a>
-      <ul>
-        <li>
-          <a [routerLink]="['./post']"><span class="topbar-submenu-icon fa fa-book"></span>Posts</a>
-        </li>
-        <li>
-          <a [routerLink]="['./user']"><span class="topbar-submenu-icon fa fa-book"></span>Users</a>
-        </li>
-      </ul>
-    </li>
-    <li *ngIf="isLoggedIn" style="color: white">
-       {{user.username}}
-    </li>
-    <li *ngIf="isLoggedIn">
-      <!--
-      <app-logout></app-logout>
-      -->
-    </li>
-  </ul>
-</div>
+</nav>
