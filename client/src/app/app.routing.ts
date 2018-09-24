@@ -14,7 +14,7 @@ export const APPROUTES: Routes = [
             },
             {
                 path: 'post',
-                loadChildren: () => PostModule
+                loadChildren: '../app/modules/post/post.module#PostModule'
             }
         ]
     }
