@@ -5,8 +5,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { Routing } from './app.routing';
 import { SDKBrowserModule } from './apiclient/index';
 import { AppComponent } from './app.component';
-
-
 @NgModule({
   declarations: [
     AppComponent

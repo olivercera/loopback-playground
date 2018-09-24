@@ -21,6 +21,9 @@ export class PostListComponent implements OnInit {
     this.postApi.find().subscribe(
       data => {
         console.log(data);
+      },
+      error => {
+        console.log(error);
       }
     );
   }

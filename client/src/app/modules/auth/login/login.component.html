@@ -1,0 +1,10 @@
+<h1>Log In</h1>
+<form [formGroup]="form" (ngSubmit)="login(model)">
+  <formly-form [form]="form" [fields]="fields" [model]="model">
+    <div class="p-grid">
+      <div class="p-col">
+        <button class="btn" type="submit"> Log In </button>
+      </div>
+    </div>
+  </formly-form>
+</form>
