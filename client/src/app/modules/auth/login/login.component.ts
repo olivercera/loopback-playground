@@ -4,7 +4,7 @@ import { FormGroup } from '@angular/forms';
 import { User } from '../../../apiclient/models';
 import { UserApi } from '../../../apiclient/services/index';
 import { LoopBackConfig } from '../../../apiclient/index';
-import { ToastrService } from 'ngx-toastr';
+import { NotificationsService, NotificationType } from 'angular2-notifications';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -17,10 +17,9 @@ export class LoginComponent implements OnInit {
 
   fields: FormlyFieldConfig[] = [
     {
-      key: 'username',
+      key: 'email',
       type: 'input',
       templateOptions: {
-        type: 'username',
         label: 'User Name',
         placeholder: 'User Name',
         required: true,
@@ -40,7 +39,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private userApi: UserApi,
-    private toastr: ToastrService
+    private _notifications: NotificationsService
 
   ) {
     LoopBackConfig.setBaseURL('http://127.0.0.1:3000');
@@ -48,20 +47,26 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.model = {} as User;
   }
 
   login(creds) {
+    console.log(creds);
     this.userApi.login(
       creds
     ).subscribe(
-      user => {
-
+      data => {
+        this._notifications.success('Welcome back!');
       },
       error => {
-        this.toastr.error('whhhhat?');
+        if (error.statusCode === 400) {
+          this._notifications.warn('Oooops!', error.message);
+        } else {
+          this._notifications.error('Oooops!', error.message);
+        }
         console.log(error);
       }
-    )
+    );
   }
 
 }
