@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { FormGroup } from '@angular/forms';
+import { User } from '../../../apiclient/models';
 import { UserApi } from '../../../apiclient/services/index';
 
 @Component({
@@ -10,6 +11,7 @@ import { UserApi } from '../../../apiclient/services/index';
 })
 export class LoginComponent implements OnInit {
 
+  model: User;
   form = new FormGroup({});
 
   fields: FormlyFieldConfig[] = [
