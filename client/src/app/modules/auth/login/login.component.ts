@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { FormGroup } from '@angular/forms';
 import { User } from '../../../apiclient/models';
-import { UserApi } from '../../../apiclient/services/index';
+import { UserApi, LoopBackAuth } from '../../../apiclient/services/index';
 import { LoopBackConfig } from '../../../apiclient/index';
 import { NotificationsService, NotificationType } from 'angular2-notifications';
 @Component({
@@ -39,7 +39,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private userApi: UserApi,
-    private _notifications: NotificationsService
+    private _notifications: NotificationsService,
+    private loopBackAuth: LoopBackAuth
 
   ) {
     LoopBackConfig.setBaseURL('http://127.0.0.1:3000');
@@ -48,15 +49,24 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.model = {} as User;
+    this.isUserLoggedIn();
+  }
+
+  isUserLoggedIn() {
+    if (this.loopBackAuth.getAccessTokenId()) {
+      this._notifications.info('How did we get here?', 'You\'re logged in');
+      // todo: redirect to home page
+    }
   }
 
   login(creds) {
-    console.log(creds);
     this.userApi.login(
       creds
     ).subscribe(
       data => {
         this._notifications.success('Welcome back!');
+        this.loopBackAuth.clear();
+        this.loopBackAuth.setToken(data);
       },
       error => {
         if (error.statusCode === 400) {
@@ -64,7 +74,6 @@ export class LoginComponent implements OnInit {
         } else {
           this._notifications.error('Oooops!', error.message);
         }
-        console.log(error);
       }
     );
   }
