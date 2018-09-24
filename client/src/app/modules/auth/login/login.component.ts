@@ -3,7 +3,8 @@ import { FormlyFieldConfig } from '@ngx-formly/core';
 import { FormGroup } from '@angular/forms';
 import { User } from '../../../apiclient/models';
 import { UserApi } from '../../../apiclient/services/index';
-
+import { LoopBackConfig } from '../../../apiclient/index';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -37,12 +38,19 @@ export class LoginComponent implements OnInit {
     },
   ];
 
-  constructor(private userApi: UserApi) { }
+  constructor(
+    private userApi: UserApi,
+    private toastr: ToastrService
+
+  ) {
+    LoopBackConfig.setBaseURL('http://127.0.0.1:3000');
+    LoopBackConfig.setApiVersion('api');
+  }
 
   ngOnInit() {
   }
 
-  login( creds ) {
+  login(creds) {
     this.userApi.login(
       creds
     ).subscribe(
@@ -50,6 +58,7 @@ export class LoginComponent implements OnInit {
 
       },
       error => {
+        this.toastr.error('whhhhat?');
         console.log(error);
       }
     )
