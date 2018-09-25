@@ -1,6 +1,6 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
+import { AuthGuard } from './services/auth.guard';
 export const APPROUTES: Routes = [
     {
         path: 'post',
@@ -10,7 +10,11 @@ export const APPROUTES: Routes = [
         path: 'auth',
         loadChildren: './modules/auth/auth.module#AuthModule'
     },
-    { path: '', redirectTo: '/auth', pathMatch: 'full' },
+    {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: '/auth/login'
+    },
 ];
 
 export const Routing: ModuleWithProviders = RouterModule.forRoot(APPROUTES, { useHash: true });

@@ -1,3 +1,25 @@
-<p>
-  list works!
-</p>
+<h2>Posts</h2>
+
+<nav class="nav">
+<button type="button" class="btn btn-primary">Primary</button>
+  <a class="nav-link active" href="#">Active</a>
+  <a class="nav-link" href="#">Link</a>
+  <a class="nav-link" href="#">Link</a>
+  <a class="nav-link disabled" href="#">Disabled</a>
+</nav>
+
+<table class="table">
+
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Title</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let post of posts">
+      <td> {{ post.id }} </td>
+      <td> {{ post.title }} </td>
+    </tr>
+  </tbody>
+</table>
